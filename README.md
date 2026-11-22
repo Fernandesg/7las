@@ -1,5 +1,7 @@
 # 7las
 
+![Banner do 7las](.github/assets/banner.jpg)
+
 App de compartilhamento de tela para Windows, construído com Tauri 2, React, TypeScript e WebRTC. Funciona na bandeja do sistema e oferece salas privadas para transmitir um monitor ou uma janela.
 
 ## Desenvolvimento
