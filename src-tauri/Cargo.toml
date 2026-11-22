@@ -1,0 +1,39 @@
+[package]
+name = "app"
+version = "0.1.0"
+description = "Compartilhamento de tela privado para Windows"
+authors = ["brunobach"]
+license = ""
+repository = "https://github.com/brunobach/7las"
+edition = "2024"
+rust-version = "1.90"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "app_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.7.6", features = [] }
+
+[dependencies]
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+log = "0.4"
+tauri = { version = "2.12.7", features = ["tray-icon"] }
+tauri-plugin-log = "2"
+tauri-plugin-notification = "2"
+ed25519-dalek = { version = "2", features = ["rand_core"] }
+rand_core = { version = "0.6", features = ["getrandom"] }
+base64 = "0.23.1"
+zeroize = "1.9.2"
+windows = { version = "0.62.2", features = ["Win32_Security_Cryptography", "Win32_Foundation"] }
+
+[target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
+tauri-plugin-autostart = "2"
+tauri-plugin-global-shortcut = "2"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
